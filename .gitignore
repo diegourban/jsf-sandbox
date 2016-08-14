@@ -3,10 +3,24 @@
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
+build/
+
 # Package Files #
-*.jar
+#*.jar
 *.war
 *.ear
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+##Eclipse
+.metadata
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+
+# JDT-specific (Eclipse Java Development Tools)
+.classpath
