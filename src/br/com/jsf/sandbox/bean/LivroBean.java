@@ -14,7 +14,7 @@ public class LivroBean {
 		return livro;
 	}
 
-	public void gravar() {
+	public String gravar() {
 		System.out.println("Gravando livro " + this.livro.getTitulo());
 
 		if (livro.getAutores().isEmpty()) {
@@ -22,6 +22,7 @@ public class LivroBean {
 		}
 
 		new DAO<Livro>(Livro.class).adiciona(this.livro);
+		return "";
 	}
 
 }
