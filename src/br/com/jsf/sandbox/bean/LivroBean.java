@@ -1,17 +1,33 @@
 package br.com.jsf.sandbox.bean;
 
+import java.io.Serializable;
+import java.util.List;
+
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 
 import br.com.jsf.sandbox.dao.DAO;
+import br.com.jsf.sandbox.model.Autor;
 import br.com.jsf.sandbox.model.Livro;
 
 @ManagedBean
-public class LivroBean {
+// @RequestScoped //por default, o bean é request scoped e ele sobrevive apenas no request
+@ViewScoped // para garantir que o bean sobreviva enquanto a tela existir
+public class LivroBean implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2230866936064983999L;
 
 	private Livro livro = new Livro();
-
-	public Livro getLivro() {
-		return livro;
+	
+	private Integer autorId;
+	
+	public String gravarAutor() {
+		Autor autor = new DAO<Autor>(Autor.class).buscaPorId(autorId);
+		this.livro.adicionaAutor(autor);
+		return null;
 	}
 
 	public String gravar() {
@@ -22,7 +38,32 @@ public class LivroBean {
 		}
 
 		new DAO<Livro>(Livro.class).adiciona(this.livro);
-		return "";
+		this.livro = new Livro();
+		return null;
+	}
+	
+	public List<Livro> getLivros() {
+        return new DAO<Livro>(Livro.class).listaTodos();
+    }
+	
+	public List<Autor> getAutoresDoLivro() {
+		return this.livro.getAutores();
+	}
+	
+	public Livro getLivro() {
+		return livro;
+	}
+	
+	public List<Autor> getAutores() {
+		return new DAO<Autor>(Autor.class).listaTodos();
+	}
+	
+	public Integer getAutorId() {
+		return autorId;
+	}
+	
+	public void setAutorId(Integer autorId) {
+		this.autorId = autorId;
 	}
 
 }
