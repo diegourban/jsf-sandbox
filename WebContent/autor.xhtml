@@ -21,9 +21,28 @@
 						<f:validateLength minimum="5" />
 					</h:inputText>
 					<h:message for="nome" />
-					<h:commandButton value="Gravar" action="#{autorBean.gravar}" />
+					<h:commandButton value="Gravar" action="#{autorBean.gravar}" >
+						<f:ajax execute="@form" render="@form :formTabelaAutores:tabelaAutores" />
+					</h:commandButton>
 				</h:panelGrid>
 			</fieldset>
+		</h:form>
+		
+		<h:form id="formTabelaAutores">
+			<h:dataTable value="#{autorBean.autores}" var="autor" id="tabelaAutores">
+				<h:column>
+					<f:facet name="header">Nome</f:facet>
+					<h:outputText value="#{autor.nome}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Editar</f:facet>
+					<h:commandLink value="editar" action="#{autorBean.editar(autor)}"/>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Remover</f:facet>
+					<h:commandLink value="remove" action="#{autorBean.remover(autor)}"/>
+				</h:column>
+			</h:dataTable>
 		</h:form>
 	</ui:define>
 	

@@ -2,9 +2,11 @@ package br.com.jsf.sandbox.model;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
@@ -24,11 +26,11 @@ public class Livro {
 	@Temporal(TemporalType.DATE)
 	private Calendar dataLancamento = Calendar.getInstance();
 
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	private List<Autor> autores = new ArrayList<Autor>();
 
 	public List<Autor> getAutores() {
-		return autores;
+		return Collections.unmodifiableList(autores);
 	}
 
 	public void adicionaAutor(Autor autor) {
@@ -76,6 +78,10 @@ public class Livro {
 	
 	public void setDataLancamento(Calendar dataLancamento) {
 		this.dataLancamento = dataLancamento;
+	}
+
+	public void removeAutor(Autor autor) {
+		this.autores.remove(autor);
 	}
 
 }
