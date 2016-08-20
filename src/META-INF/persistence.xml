@@ -10,6 +10,7 @@
 		
 		<class>br.com.jsf.sandbox.model.Livro</class>
 		<class>br.com.jsf.sandbox.model.Autor</class>
+		<class>br.com.jsf.sandbox.model.Usuario</class>
 
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
@@ -18,7 +19,7 @@
 			<property name="javax.persistence.jdbc.password" value="root" />
 
 			<property name="hibernate.hbm2ddl.auto" value="update" />
-			<property name="hibernate.show_sql" value="false" />
+			<property name="hibernate.show_sql" value="true" />
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
 		</properties>
 	</persistence-unit>

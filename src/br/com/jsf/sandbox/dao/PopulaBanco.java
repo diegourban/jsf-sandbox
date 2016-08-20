@@ -9,6 +9,7 @@ import javax.persistence.EntityManager;
 
 import br.com.jsf.sandbox.model.Autor;
 import br.com.jsf.sandbox.model.Livro;
+import br.com.jsf.sandbox.model.Usuario;
 
 public class PopulaBanco {
 
@@ -17,6 +18,11 @@ public class PopulaBanco {
 		EntityManager em = new JPAUtil().getEntityManager();
 
 		em.getTransaction().begin();
+		
+		Usuario diego = new Usuario();
+		diego.setEmail("diego@email.com");
+		diego.setSenha("123456");
+		em.persist(diego);
 
 		Autor assis = geraAutor("Machado de Assis");
 		em.persist(assis);

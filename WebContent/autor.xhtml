@@ -6,12 +6,13 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
 <ui:composition template="_template.xhtml">
-	
+
 	<f:metadata>
 		<f:viewParam name="autorId" value="#{autorBean.autorId}" />
-		<f:viewAction action="#{autorBean.carregarAutorPeloId}" if="#{param.autorId != null}" />
+		<f:viewAction action="#{autorBean.carregarAutorPeloId}"
+			if="#{param.autorId != null}" />
 	</f:metadata>
-	
+
 	<ui:define name="titulo">
 		<h1>Novo Autor</h1>
 	</ui:define>
@@ -28,38 +29,39 @@
 						<f:ajax event="blur" render="messageNome" />
 					</h:inputText>
 					<h:message for="nome" id="messageNome" />
-					
+
 					<h:outputLabel value="Email:" for="email" />
 					<h:inputText id="email" value="#{autorBean.autor.email}"
 						required="true" requiredMessage="Email é obrigatório">
 						<f:passThroughAttribute name="type" value="email" />
 					</h:inputText>
-					<h:message for="email" id="messageEmail"/>
-					
-					<h:commandButton value="Gravar" action="#{autorBean.gravar}" >
+					<h:message for="email" id="messageEmail" />
+
+					<h:commandButton value="Gravar" action="#{autorBean.gravar}">
 					</h:commandButton>
 				</h:panelGrid>
 			</fieldset>
 		</h:form>
-		
+
 		<h:form id="formTabelaAutores">
-			<h:dataTable value="#{autorBean.autores}" var="autor" id="tabelaAutores">
+			<h:dataTable value="#{autorBean.autores}" var="autor"
+				id="tabelaAutores">
 				<h:column>
 					<f:facet name="header">Nome</f:facet>
 					<h:outputText value="#{autor.nome}" />
 				</h:column>
 				<h:column>
 					<f:facet name="header">Editar</f:facet>
-					<h:commandLink value="editar" action="#{autorBean.editar(autor)}"/>
+					<h:commandLink value="editar" action="#{autorBean.editar(autor)}" />
 				</h:column>
 				<h:column>
 					<f:facet name="header">Remover</f:facet>
-					<h:commandLink value="remove" action="#{autorBean.remover(autor)}"/>
+					<h:commandLink value="remove" action="#{autorBean.remover(autor)}" />
 				</h:column>
 			</h:dataTable>
 		</h:form>
 	</ui:define>
-	
+
 	<ui:define name="texto">
 		Cadastro de Livros
 	</ui:define>

@@ -35,13 +35,13 @@ public class AutorBean {
 	public String editar(Autor autor) {
 		System.out.println("Editando autor " + autor.getNome());
 		this.autor = autor;
-		return null;
+		return "";
 	}
 	
 	public String remover(Autor autor) {
 		System.out.println("Removendo autor " + autor.getNome());
 		new DAO<Autor>(Autor.class).remove(autor);
-		return null;
+		return "";
 	}
 	
 	public List<Autor> getAutores() {

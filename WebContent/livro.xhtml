@@ -6,12 +6,13 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
 <ui:composition template="_template.xhtml">
-	
+
 	<f:metadata>
 		<f:viewParam name="livroId" value="#{livroBean.livroId}" />
-		<f:viewAction action="#{livroBean.carregarLivroPeloId}" if="#{param.livroId != null}" />
+		<f:viewAction action="#{livroBean.carregarLivroPeloId}"
+			if="#{param.livroId != null}" />
 	</f:metadata>
-	
+
 	<ui:define name="titulo">
 		<h1>Novo Livro</h1>
 	</ui:define>
@@ -33,7 +34,7 @@
 
 					<h:outputLabel value="ISBN:" for="isbn" />
 					<h:inputText id="isbn" value="#{livroBean.livro.isbn}"
-						validator="#{livroBean.comecaComDigitoUm}" />
+						validator="#{livroBean.comecaComDigitoNove}" />
 
 					<h:outputLabel value="Preço:" for="preco" />
 					<h:inputText id="preco" value="#{livroBean.livro.preco}"
@@ -72,20 +73,23 @@
 					<h:column>
 						<h:outputText value="#{autor.nome}" />
 					</h:column>
-					
+
 					<h:column>
-						<h:commandLink value="X" action="#{livroBean.removerAutorDoLivro(autor)}"/>
+						<h:commandLink value="X"
+							action="#{livroBean.removerAutorDoLivro(autor)}" />
 					</h:column>
 				</h:dataTable>
 			</fieldset>
 
 			<h:commandButton value="Gravar" action="#{livroBean.gravar}">
-				<f:ajax execute="@form" render="@form :formTabelaLivros:tabelaLivros" />
+				<f:ajax execute="@form"
+					render="@form :formTabelaLivros:tabelaLivros" />
 			</h:commandButton>
 		</h:form>
 
 		<h:form id="formTabelaLivros">
-			<h:dataTable value="#{livroBean.livros}" var="livro" id="tabelaLivros">
+			<h:dataTable value="#{livroBean.livros}" var="livro"
+				id="tabelaLivros">
 				<h:column>
 					<f:facet name="header">Titulo</f:facet>
 					<h:outputText value="#{livro.titulo}" />
@@ -107,16 +111,16 @@
 				</h:column>
 				<h:column>
 					<f:facet name="header">Editar</f:facet>
-					<h:commandLink value="editar" action="#{livroBean.editar(livro)}"/>
+					<h:commandLink value="editar" action="#{livroBean.editar(livro)}" />
 				</h:column>
 				<h:column>
 					<f:facet name="header">Remover</f:facet>
-					<h:commandLink value="remove" action="#{livroBean.remover(livro)}"/>
+					<h:commandLink value="remove" action="#{livroBean.remover(livro)}" />
 				</h:column>
 			</h:dataTable>
 		</h:form>
 	</ui:define>
-	
+
 	<ui:define name="texto">
 		Cadastro de Autores
 	</ui:define>
