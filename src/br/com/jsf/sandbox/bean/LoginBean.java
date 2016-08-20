@@ -2,6 +2,7 @@ package br.com.jsf.sandbox.bean;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 import br.com.jsf.sandbox.dao.UsuarioDao;
 import br.com.jsf.sandbox.model.Usuario;
@@ -21,6 +22,8 @@ public class LoginBean {
 		
 		boolean existe = new UsuarioDao().existe(usuario);
 		if(existe) {
+			FacesContext currentInstance = FacesContext.getCurrentInstance();
+			currentInstance.getExternalContext().getSessionMap().put("usuarioLogado", this.usuario);
 			return "livro?faces-redirect=true";
 		}
 		return null;

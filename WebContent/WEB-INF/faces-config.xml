@@ -6,6 +6,7 @@
     version="2.2">
     
     <lifecycle>
+    	<phase-listener>br.com.jsf.sandbox.util.Autorizador</phase-listener>
     	<phase-listener>br.com.jsf.sandbox.util.LogPhaseListener</phase-listener>
     </lifecycle>
 
