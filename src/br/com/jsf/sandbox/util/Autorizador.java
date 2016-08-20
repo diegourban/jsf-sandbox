@@ -31,7 +31,7 @@ public class Autorizador implements PhaseListener {
 		
 		NavigationHandler handler = facesContext.getApplication().getNavigationHandler();
 		handler.handleNavigation(facesContext, null, "login?faces-redirect=true");
-		facesContext.getRenderResponse();
+		facesContext.renderResponse();
 	}
 
 	@Override
