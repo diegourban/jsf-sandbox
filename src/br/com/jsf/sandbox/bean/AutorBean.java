@@ -11,6 +11,8 @@ import br.com.jsf.sandbox.model.Autor;
 @ManagedBean
 @ViewScoped
 public class AutorBean {
+	
+	private Integer autorId;
 
 	private Autor autor = new Autor();
 
@@ -45,4 +47,21 @@ public class AutorBean {
 	public List<Autor> getAutores() {
         return new DAO<Autor>(Autor.class).listaTodos();
     }
+	
+	public void carregarAutorPeloId() {
+		Autor autorBuscado = new DAO<Autor>(Autor.class).buscaPorId(this.autorId);
+		if(autorBuscado == null) {
+			this.autor = new Autor();
+		} else {
+			this.autor = autorBuscado;
+		}
+	}
+	
+	public Integer getAutorId() {
+		return autorId;
+	}
+	
+	public void setAutorId(Integer autorId) {
+		this.autorId = autorId;
+	}
 }
