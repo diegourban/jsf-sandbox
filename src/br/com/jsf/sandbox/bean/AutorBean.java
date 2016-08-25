@@ -1,17 +1,23 @@
 package br.com.jsf.sandbox.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.view.ViewScoped;
+import javax.inject.Named;
 
 import br.com.jsf.sandbox.dao.DAO;
 import br.com.jsf.sandbox.model.Autor;
 
-@ManagedBean
+@Named
 @ViewScoped
-public class AutorBean {
+public class AutorBean implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1282015562923495178L;
+
 	private Integer autorId;
 
 	private Autor autor = new Autor();

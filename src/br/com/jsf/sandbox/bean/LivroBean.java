@@ -6,27 +6,26 @@ import java.util.List;
 import java.util.Locale;
 
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.validator.ValidatorException;
+import javax.faces.view.ViewScoped;
+import javax.inject.Named;
 
 import br.com.jsf.sandbox.dao.DAO;
 import br.com.jsf.sandbox.model.Autor;
 import br.com.jsf.sandbox.model.Livro;
 import br.com.jsf.sandbox.model.LivroDataModel;
 
-@ManagedBean
-// @RequestScoped //por default, o bean é request scoped e ele sobrevive apenas
-// no request
-@ViewScoped // para garantir que o bean sobreviva enquanto a tela existir
+
+@Named
+@ViewScoped
 public class LivroBean implements Serializable {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 2230866936064983999L;
+	private static final long serialVersionUID = -4394564641331466669L;
 
 	private Integer livroId;
 

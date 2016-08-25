@@ -1,17 +1,24 @@
 package br.com.jsf.sandbox.bean;
 
+import java.io.Serializable;
+
+import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import javax.inject.Named;
 
 import br.com.jsf.sandbox.dao.UsuarioDao;
 import br.com.jsf.sandbox.model.Usuario;
 
-@ManagedBean
-@ViewScoped
-public class LoginBean {
+@Named
+@SessionScoped
+public class LoginBean implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3909392460124650158L;
+	
 	private Usuario usuario = new Usuario();
 
 	public Usuario getUsuario() {

@@ -14,18 +14,16 @@ public class LivroDataModel extends LazyDataModel<Livro> {
 	 * 
 	 */
 	private static final long serialVersionUID = -423879738937995474L;
-	
-	private DAO<Livro> dao = new DAO<>(Livro.class);
-	
+
 	public LivroDataModel() {
-	    super.setRowCount(dao.quantidadeDeElementos());
+		super.setRowCount(new DAO<Livro>(Livro.class).quantidadeDeElementos());
 	}
-	
+
 	@Override
 	public List<Livro> load(int first, int pageSize, String sortField, SortOrder sortOrder,
 			Map<String, Object> filters) {
-		String titulo = (String) filters.get("titulo"); 
-		return dao.listaTodosPaginada2(first, pageSize, "titulo", titulo);
+		String titulo = (String) filters.get("titulo");
+		return new DAO<Livro>(Livro.class).listaTodosPaginada2(first, pageSize, "titulo", titulo);
 	}
 
 }
