@@ -9,6 +9,7 @@ import javax.inject.Named;
 
 import br.com.jsf.sandbox.dao.AutorDao;
 import br.com.jsf.sandbox.model.Autor;
+import br.com.jsf.sandbox.tx.Transacional;
 
 @Named
 @ViewScoped
@@ -30,6 +31,7 @@ public class AutorBean implements Serializable {
 		return autor;
 	}
 
+	@Transacional
 	public String gravar() {
 		System.out.println("Gravando autor " + this.autor.getNome());
 
@@ -42,12 +44,14 @@ public class AutorBean implements Serializable {
 		return "livro?faces-redirect=true";
 	}
 	
+	@Transacional
 	public String editar(Autor autor) {
 		System.out.println("Editando autor " + autor.getNome());
 		this.autor = autor;
 		return "";
 	}
 	
+	@Transacional
 	public String remover(Autor autor) {
 		System.out.println("Removendo autor " + autor.getNome());
 		this.autorDao.remove(autor);

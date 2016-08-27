@@ -17,6 +17,7 @@ import br.com.jsf.sandbox.dao.AutorDao;
 import br.com.jsf.sandbox.dao.LivroDao;
 import br.com.jsf.sandbox.model.Autor;
 import br.com.jsf.sandbox.model.Livro;
+import br.com.jsf.sandbox.tx.Transacional;
 
 
 @Named
@@ -47,12 +48,14 @@ public class LivroBean implements Serializable {
 	public LivroBean() {
 	}
 
+	@Transacional
 	public String gravarAutor() {
 		Autor autor = autorDao.buscaPorId(autorId);
 		this.livro.adicionaAutor(autor);
 		return null;
 	}
 
+	@Transacional
 	public String gravar() {
 		System.out.println("Gravando livro " + this.livro.getTitulo());
 
@@ -75,15 +78,18 @@ public class LivroBean implements Serializable {
 		return null;
 	}
 
+	@Transacional
 	public String editar(Livro livro) {
 		System.out.println("Editando livro " + livro.getTitulo());
 		this.livro = livro;
 		return null;
 	}
 
+	@Transacional
 	public String remover(Livro livro) {
 		System.out.println("Removendo livro " + livro.getTitulo());
 		livroDao.remove(livro);
+		this.livros = livroDao.listaTodos();
 		return null;
 	}
 
