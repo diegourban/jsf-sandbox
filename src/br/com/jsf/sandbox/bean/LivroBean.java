@@ -17,7 +17,6 @@ import br.com.jsf.sandbox.dao.AutorDao;
 import br.com.jsf.sandbox.dao.LivroDao;
 import br.com.jsf.sandbox.model.Autor;
 import br.com.jsf.sandbox.model.Livro;
-import br.com.jsf.sandbox.model.LivroDataModel;
 
 
 @Named
@@ -37,8 +36,6 @@ public class LivroBean implements Serializable {
 
 	private List<Livro> livros;
 	
-	private LivroDataModel livroDataModel;
-	
 	private List<String> generos = Arrays.asList("Romance", "Drama", "Ação");
 	
 	@Inject
@@ -48,7 +45,6 @@ public class LivroBean implements Serializable {
 	private LivroDao livroDao;
 	
 	public LivroBean() {
-		livroDataModel = new LivroDataModel(this.livroDao);
 	}
 
 	public String gravarAutor() {
@@ -181,14 +177,6 @@ public class LivroBean implements Serializable {
 
 	public void setLivroId(Integer livroId) {
 		this.livroId = livroId;
-	}
-	
-	public LivroDataModel getLivroDataModel() {
-		return livroDataModel;
-	}
-	
-	public void setLivroDataModel(LivroDataModel livroDataModel) {
-		this.livroDataModel = livroDataModel;
 	}
 	
 	public List<String> getGeneros() {
