@@ -24,3 +24,4 @@ tmp/
 
 # JDT-specific (Eclipse Java Development Tools)
 #.classpath
+/target/
