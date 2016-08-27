@@ -7,7 +7,7 @@ import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
-import br.com.jsf.sandbox.model.Livro;
+import br.com.jsf.sandbox.modelo.Livro;
 import br.com.jsf.sandbox.tx.Log;
 
 public class LivroDao implements Serializable {

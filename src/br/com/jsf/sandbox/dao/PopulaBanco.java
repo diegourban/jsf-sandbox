@@ -7,9 +7,9 @@ import java.util.Date;
 
 import javax.persistence.EntityManager;
 
-import br.com.jsf.sandbox.model.Autor;
-import br.com.jsf.sandbox.model.Livro;
-import br.com.jsf.sandbox.model.Usuario;
+import br.com.jsf.sandbox.modelo.Autor;
+import br.com.jsf.sandbox.modelo.Livro;
+import br.com.jsf.sandbox.modelo.Usuario;
 
 public class PopulaBanco {
 

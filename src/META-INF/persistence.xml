@@ -8,9 +8,10 @@
 
    		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		
-		<class>br.com.jsf.sandbox.model.Livro</class>
-		<class>br.com.jsf.sandbox.model.Autor</class>
-		<class>br.com.jsf.sandbox.model.Usuario</class>
+		<class>br.com.jsf.sandbox.modelo.Livro</class>
+		<class>br.com.jsf.sandbox.modelo.Autor</class>
+		<class>br.com.jsf.sandbox.modelo.Usuario</class>
+		<class>br.com.jsf.sandbox.modelo.Venda</class>
 
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />

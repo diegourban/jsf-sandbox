@@ -7,42 +7,42 @@ import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
-import br.com.jsf.sandbox.modelo.Autor;
+import br.com.jsf.sandbox.modelo.Venda;
 
-public class AutorDao implements Serializable {
+public class VendaDao implements Serializable {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -5132936211064819069L;
+	private static final long serialVersionUID = 1742310599992922284L;
 
 	@Inject
 	private EntityManager entityManager;
 	
-	private DAO<Autor> dao;
+	private DAO<Venda> dao;
 	
 	@PostConstruct
 	public void init() {
-		this.dao = new DAO<Autor>(this.entityManager, Autor.class);
+		this.dao = new DAO<Venda>(this.entityManager, Venda.class);
 	}
 
-	public void adiciona(Autor t) {
+	public void adiciona(Venda t) {
 		dao.adiciona(t);
 	}
 
-	public void remove(Autor t) {
+	public void remove(Venda t) {
 		dao.remove(t);
 	}
 
-	public void atualiza(Autor t) {
+	public void atualiza(Venda t) {
 		dao.atualiza(t);
 	}
 
-	public List<Autor> listaTodos() {
+	public List<Venda> listaTodos() {
 		return dao.listaTodos();
 	}
 
-	public Autor buscaPorId(Integer id) {
+	public Venda buscaPorId(Integer id) {
 		return dao.buscaPorId(id);
 	}
 
@@ -54,4 +54,9 @@ public class AutorDao implements Serializable {
 		return dao.quantidadeDeElementos();
 	}
 
+	public List<Venda> listaTodosPaginada(int firstResult, int maxResults) {
+		return dao.listaTodosPaginada(firstResult, maxResults);
+	}
+	
+	
 }

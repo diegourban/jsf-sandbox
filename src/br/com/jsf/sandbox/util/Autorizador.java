@@ -6,7 +6,7 @@ import javax.faces.event.PhaseEvent;
 import javax.faces.event.PhaseId;
 import javax.faces.event.PhaseListener;
 
-import br.com.jsf.sandbox.model.Usuario;
+import br.com.jsf.sandbox.modelo.Usuario;
 
 public class Autorizador implements PhaseListener {
 

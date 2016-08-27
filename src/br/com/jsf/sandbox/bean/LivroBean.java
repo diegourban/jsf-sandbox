@@ -15,8 +15,8 @@ import javax.inject.Named;
 
 import br.com.jsf.sandbox.dao.AutorDao;
 import br.com.jsf.sandbox.dao.LivroDao;
-import br.com.jsf.sandbox.model.Autor;
-import br.com.jsf.sandbox.model.Livro;
+import br.com.jsf.sandbox.modelo.Autor;
+import br.com.jsf.sandbox.modelo.Livro;
 import br.com.jsf.sandbox.tx.Transacional;
 
 
@@ -45,6 +45,9 @@ public class LivroBean implements Serializable {
 	@Inject
 	private LivroDao livroDao;
 	
+	@Inject
+	private FacesContext facesContext;
+	
 	public LivroBean() {
 	}
 
@@ -62,7 +65,7 @@ public class LivroBean implements Serializable {
 		if (livro.getAutores().isEmpty()) {
 			// throw new RuntimeException("Livro deve ter pelo menos um
 			// Autor.");
-			FacesContext.getCurrentInstance().addMessage("autor",
+			facesContext.addMessage("autor",
 					new FacesMessage("Livro deve ter pelo menos um Autor"));
 			return null;
 		}
@@ -78,10 +81,9 @@ public class LivroBean implements Serializable {
 		return null;
 	}
 
-	@Transacional
 	public String editar(Livro livro) {
 		System.out.println("Editando livro " + livro.getTitulo());
-		this.livro = livro;
+		this.livro = livroDao.buscaPorId(livro.getId());
 		return null;
 	}
 

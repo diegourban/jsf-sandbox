@@ -8,7 +8,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import br.com.jsf.sandbox.dao.AutorDao;
-import br.com.jsf.sandbox.model.Autor;
+import br.com.jsf.sandbox.modelo.Autor;
 import br.com.jsf.sandbox.tx.Transacional;
 
 @Named

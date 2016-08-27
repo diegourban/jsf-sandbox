@@ -1,12 +1,32 @@
 package br.com.jsf.sandbox.modelo;
 
-import br.com.jsf.sandbox.model.Livro;
+import java.io.Serializable;
 
-public class Venda {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
+@Entity
+public class Venda implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3435092592188970881L;
+
+	@Id
+	@GeneratedValue
+	private Integer id;
+	
+	@ManyToOne
 	private Livro livro;
 
 	private Integer quantidade;
+	
+	public Venda() {
+		
+	}
 
 	public Venda(Livro livro, Integer quantidade) {
 		this.livro = livro;

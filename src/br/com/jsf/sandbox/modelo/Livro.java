@@ -1,12 +1,12 @@
-package br.com.jsf.sandbox.model;
+package br.com.jsf.sandbox.modelo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
@@ -14,7 +14,12 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-public class Livro {
+public class Livro implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8254416785093783045L;
 
 	@Id
 	@GeneratedValue
@@ -27,7 +32,7 @@ public class Livro {
 	@Temporal(TemporalType.DATE)
 	private Calendar dataLancamento = Calendar.getInstance();
 
-	@ManyToMany(fetch = FetchType.EAGER)
+	@ManyToMany
 	private List<Autor> autores = new ArrayList<Autor>();
 
 	public List<Autor> getAutores() {
