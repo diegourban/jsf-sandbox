@@ -6,7 +6,7 @@ import java.util.Map;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
 
-import br.com.jsf.sandbox.dao.DAO;
+import br.com.jsf.sandbox.dao.LivroDao;
 
 public class LivroDataModel extends LazyDataModel<Livro> {
 
@@ -14,16 +14,19 @@ public class LivroDataModel extends LazyDataModel<Livro> {
 	 * 
 	 */
 	private static final long serialVersionUID = -423879738937995474L;
-
-	public LivroDataModel() {
-		super.setRowCount(new DAO<Livro>(Livro.class).quantidadeDeElementos());
+	
+	private LivroDao livroDao;
+	
+	public LivroDataModel(LivroDao livroDao) {
+		this.livroDao = livroDao;
+		super.setRowCount(livroDao.quantidadeDeElementos());
 	}
 
 	@Override
 	public List<Livro> load(int first, int pageSize, String sortField, SortOrder sortOrder,
 			Map<String, Object> filters) {
 		String titulo = (String) filters.get("titulo");
-		return new DAO<Livro>(Livro.class).listaTodosPaginada2(first, pageSize, "titulo", titulo);
+		return livroDao.listaTodosPaginada2(first, pageSize, "titulo", titulo);
 	}
 
 }

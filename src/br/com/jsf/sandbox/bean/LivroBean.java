@@ -10,9 +10,11 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.validator.ValidatorException;
 import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
-import br.com.jsf.sandbox.dao.DAO;
+import br.com.jsf.sandbox.dao.AutorDao;
+import br.com.jsf.sandbox.dao.LivroDao;
 import br.com.jsf.sandbox.model.Autor;
 import br.com.jsf.sandbox.model.Livro;
 import br.com.jsf.sandbox.model.LivroDataModel;
@@ -35,12 +37,22 @@ public class LivroBean implements Serializable {
 
 	private List<Livro> livros;
 	
-	private LivroDataModel livroDataModel = new LivroDataModel();
+	private LivroDataModel livroDataModel;
 	
 	private List<String> generos = Arrays.asList("Romance", "Drama", "Ação");
+	
+	@Inject
+	private AutorDao autorDao;
+	
+	@Inject
+	private LivroDao livroDao;
+	
+	public LivroBean() {
+		livroDataModel = new LivroDataModel(this.livroDao);
+	}
 
 	public String gravarAutor() {
-		Autor autor = new DAO<Autor>(Autor.class).buscaPorId(autorId);
+		Autor autor = autorDao.buscaPorId(autorId);
 		this.livro.adicionaAutor(autor);
 		return null;
 	}
@@ -56,12 +68,11 @@ public class LivroBean implements Serializable {
 			return null;
 		}
 
-		DAO<Livro> dao = new DAO<Livro>(Livro.class);
 		if (this.livro.getId() == null) {
-			dao.adiciona(this.livro);
-			this.livros = dao.listaTodos();
+			livroDao.adiciona(this.livro);
+			this.livros = livroDao.listaTodos();
 		} else {
-			dao.atualiza(this.livro);
+			livroDao.atualiza(this.livro);
 		}
 
 		this.livro = new Livro();
@@ -76,12 +87,12 @@ public class LivroBean implements Serializable {
 
 	public String remover(Livro livro) {
 		System.out.println("Removendo livro " + livro.getTitulo());
-		new DAO<Livro>(Livro.class).remove(livro);
+		livroDao.remove(livro);
 		return null;
 	}
 
 	public void carregarLivroPeloId() {
-		Livro livroBuscado = new DAO<Livro>(Livro.class).buscaPorId(this.livroId);
+		Livro livroBuscado = livroDao.buscaPorId(this.livroId);
 		if (livroBuscado == null) {
 			this.livro = new Livro();
 		} else {
@@ -102,9 +113,8 @@ public class LivroBean implements Serializable {
 	}
 
 	public List<Livro> getLivros() {
-		DAO<Livro> dao = new DAO<Livro>(Livro.class);
 		if (this.livros == null) {
-			this.livros = dao.listaTodos();
+			this.livros = livroDao.listaTodos();
 		}
 		return this.livros;
 	}
@@ -154,7 +164,7 @@ public class LivroBean implements Serializable {
 	}
 
 	public List<Autor> getAutores() {
-		return new DAO<Autor>(Autor.class).listaTodos();
+		return autorDao.listaTodos();
 	}
 
 	public Integer getAutorId() {
